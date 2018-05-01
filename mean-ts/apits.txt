@@ -1,0 +1,56 @@
+./api/<_return entity.name_>s.ts
+<_Entity_>
+import * as express from 'express';
+import <_return a2.capFirst(entity.name)_> from '../models/<_return entity.name_>';
+
+let router = express.Router();
+
+router.get('/', (req, res) => {
+  <_return a2.capFirst(entity.name)_>.find()
+    .then((<_return entity.name_>s) => res.json(<_return entity.name_>s))
+    .catch((err) => res.json(err));
+});
+
+router.get('/:id', (req, res) => {
+  <_return a2.capFirst(entity.name)_>.findOne({_id: req.params.id})
+    .then((<_return entity.name_>) => res.json(<_return entity.name_>))
+    .catch((err) => res.json(err));
+})
+
+router.post('/', (req, res) => {
+  let <_return entity.name_> = new <_return a2.capFirst(entity.name)_>();
+<_
+  return a2.forProp(prop => `
+  ${entity.name}.${prop.name} = req.body.${prop.name};`, entity)
+_>
+
+  <_return entity.name_>.save()
+    .then((new<_return a2.capFirst(entity.name)_>) => res.json(new<_return a2.capFirst(entity.name)_>))
+    .catch((err) => res.json(err));
+});
+
+router.put('/:id', (req, res) => {
+  <_return a2.capFirst(entity.name)_>.findOne({_id: req.params.id})
+    .then((<_return entity.name_>) => {
+    <_
+      let result = '';
+      for (let prop of entity.props) {
+        result += `
+          ${entity.name}.${prop.name} = req.body.${prop.name};`
+      }
+      return result;
+    _>
+      <_return entity.name_>.save()
+        .then((<_return entity.name_>) => res.json(<_return entity.name_>))
+        .catch((err) => res.json(err));
+    })
+    .catch((err) => res.json(err));
+});
+
+router.delete('/:id', (req, res) => {
+  <_return a2.capFirst(entity.name)_>.remove({_id: req.params.id})
+    .then((<_return entity.name_>) => res.json(<_return entity.name_>))
+    .catch((err) => res.json(err));
+});
+
+export default router;

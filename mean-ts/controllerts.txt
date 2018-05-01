@@ -1,0 +1,9 @@
+./ngApp/controllers/<_return a2.capFirst(entity.name)_>Controller.ts
+<_Entity_>
+namespace <_return desc.name_>.Controllers {
+
+  export class <_return a2.capFirst(entity.name)_>Controller {
+
+  }
+
+}

@@ -1,0 +1,21 @@
+./models/<_return entity.name_>.ts
+<_Entity_>
+import * as mongoose from 'mongoose';
+
+export interface <_return a2.capFirst(entity.name)_> extends mongoose.Document {
+<_return a2.forProp(prop => `
+  ${prop.name}: ${prop.type};`, entity);
+_>
+}
+
+let <_return entity.name_>Schema = new mongoose.Schema({
+<_return a2.forProp(prop => `
+  ${prop.name}: {
+    type: ${a2.capFirst(prop.type)}
+  },
+`, entity)
+_>
+
+});
+
+export default mongoose.model<<_return a2.capFirst(entity.name)_>>('<_return a2.capFirst(entity.name)_>', <_return entity.name_>Schema);

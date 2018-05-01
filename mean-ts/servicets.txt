@@ -1,0 +1,37 @@
+./ngApp/services/<_return a2.capFirst(entity.name)_>Service.ts
+<_Entity_>
+namespace <_return desc.name_>.Services {
+
+  export class <_return a2.capFirst(entity.name)_>Service {
+    private <_return a2.capFirst(entity.name)_>_RESOURCE = this.$resource('/api/<_return entity.name_>s/:id', null,
+      {
+          'update': { method:'PUT' }
+      });
+
+    static $inject = ['$resource'];
+
+    constructor(private $resource) {}
+
+    public getAll<_return a2.capFirst(entity.name)_>s() {
+      return this.<_return a2.capFirst(entity.name)_>_RESOURCE.query();
+    }
+
+    public get<_return a2.capFirst(entity.name)_>(id) {
+      return this.<_return a2.capFirst(entity.name)_>_RESOURCE.get({id: id});
+    }
+
+    public delete<_return a2.capFirst(entity.name)_>(id) {
+      return this.<_return a2.capFirst(entity.name)_>_RESOURCE.delete({id: id}).$promise;
+    }
+
+    public create<_return a2.capFirst(entity.name)_>(<_return entity.name_>) {
+      return this.<_return a2.capFirst(entity.name)_>_RESOURCE.save(<_return entity.name_>).$promise;
+    }
+
+    public update<_return a2.capFirst(entity.name)_>(id, <_return entity.name_>) {
+      return this.<_return a2.capFirst(entity.name)_>_RESOURCE.update({id: id}, <_return entity.name_>).$promise;
+    }
+  }
+
+angular.module('<_return desc.name_>').service('<_return entity.name_>Service', <_return a2.capFirst(entity.name)_>Service);
+}

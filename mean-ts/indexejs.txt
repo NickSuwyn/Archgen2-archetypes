@@ -1,0 +1,44 @@
+./views/index.ejs
+<!DOCTYPE html>
+<html ng-app="<_return desc.name_>">
+
+<head>
+  <title><_return desc.name_></title>
+  <meta charset="utf-8">
+  <base href="/" />
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/ngApp/css/site.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="container">
+        <h1><_return desc.name_></h1>
+        <div>
+          <a href="/">Home</a> /
+          <a href="/about">About</a>
+        </div>
+        <hr />
+
+        <ui-view></ui-view>
+  </div>
+
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js"></script>
+  <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+  <script src="/ngApp/app.js"></script>
+  <script src="/ngApp/controllers/controllers.js"></script>
+  <script src="/ngApp/services/services.js"></script>
+<_
+  return a2.forEntity(e => `
+  <script src="/ngApp/controllers/${a2.capFirst(e.name)}Controller.js"></script>
+  <script src="/ngApp/services/${a2.capFirst(e.name)}Service.js"></script>`, desc)
+_>
+
+</body>
+
+</html>
